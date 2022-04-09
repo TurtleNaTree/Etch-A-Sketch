@@ -1,0 +1,36 @@
+
+
+#sketchBody {
+    /*display: flex;
+    justify-content: center;*/
+    display: inline-grid;
+    /*grid-template-columns: repeat(8, 1fr); */
+    grid-gap: 0px;
+}
+
+#resetBtn {
+    padding: 20px 70px;
+    background-color: orange;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 25px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+#resetBtn:hover {
+    background-color: orangered;
+    cursor: pointer;
+}
+
+.gridSquare {
+    width: 25px;
+    height: 25px;
+    border: 1px solid black;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
