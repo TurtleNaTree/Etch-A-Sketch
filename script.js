@@ -48,10 +48,15 @@ function resetGrid(){
 }
 
 function changeColor(){
-    this.style.backgroundColor = "blue";
+    this.style.backgroundColor = getRandomColor();
 }
 
 function resetColor(){
     this.style.backgroundColor = "white";
 }
 
+function getRandomColor(){
+    let hue = Math.floor(Math.random() * 360) + 1;
+
+    return(`hsl(${hue}, 100%, 50%)`);
+}
