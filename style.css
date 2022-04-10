@@ -5,7 +5,12 @@
     justify-content: center;*/
     display: inline-grid;
     /*grid-template-columns: repeat(8, 1fr); */
+    width: 800px;
+    height: 800px;
     grid-gap: 0px;
+    border-style: solid;
+    border-color: black;
+    border-width: 10px;
 }
 
 #resetBtn {
@@ -22,11 +27,27 @@
     cursor: pointer;
 }
 
-.gridSquare {
+#mainContent {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#toolBar {
+    border-style: solid;
+    border-color: black;
+    border-width: 10px;
+    display: inline-grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 200px;
+    height: 180px;
+    grid-gap: 0px;
+}
+
+/*.gridSquare {
     width: 25px;
     height: 25px;
     border: 1px solid black;
-}
+} */
 
 body {
     display: flex;
