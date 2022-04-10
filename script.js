@@ -1,8 +1,12 @@
 const resetBtn = document.querySelector("#resetBtn");
 resetBtn.addEventListener("click", resetGrid);
 const maxToolBarColors = 20;
+let mouseDown = false
+document.body.onmousedown = () => (mouseDown = true)
+document.body.onmouseup = () => (mouseDown = false)
 createGrid();
 createToolBar();
+
 
 
 function createGrid(dimension = 16){
@@ -18,6 +22,7 @@ function createGrid(dimension = 16){
         gridSquare.classList.toggle("gridSquare");
 
         gridSquare.addEventListener("mouseover", changeColor);
+        gridSquare.addEventListener("mousedown", changeColor);
 
         sketchBody.appendChild(gridSquare);
         body.appendChild(sketchBody);
@@ -30,7 +35,7 @@ function createToolBar() {
     
     for (let color = 0; color < maxToolBarColors - 1; color++){
         const toolBarColor = document.createElement("div");
-        toolBarColor.classList.toggle("gridSquare");
+        toolBarColor.classList.toggle("toolBarColor");
         toolBarColor.style.backgroundColor = setToolBarColor(color);
         
         toolBar.appendChild(toolBarColor);
@@ -39,10 +44,10 @@ function createToolBar() {
     // this creates the random color selector
     const toolBarRandomColor = document.createElement("div");
     toolBarRandomColor.style.cssText = "display: inline-grid;grid-template-columns: repeat(2, 1fr);";
+    toolBarRandomColor.classList.toggle("toolBarColor");
 
     for (let color = 0; color < 4; color++){
         const rainbowColor = document.createElement("div");
-        rainbowColor.classList.toggle("gridSquare");
 
         switch (color){
             case 0:
@@ -68,11 +73,11 @@ function createToolBar() {
 }
 
 function resetGrid(){
-    const body = document.querySelector("body");
+    const body = document.querySelector("#sketchArea");
     let dimensions;
     let notValid = true;
 
-    while(notValid){
+    while (notValid){
         dimensions = prompt("Enter the number of squares for the new grid.(100 is the max)");
     
         if (dimensions != NaN && (dimensions < 100 && dimensions > 0)){
@@ -132,7 +137,10 @@ function setToolBarColor(color){
     }
 }
 
-function changeColor(){
+function changeColor(event){
+    
+    if (event.type === "mouseover" && !mouseDown)
+        return;      
     this.style.backgroundColor = getRandomColor();
 }
 

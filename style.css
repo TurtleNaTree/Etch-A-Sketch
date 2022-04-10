@@ -43,11 +43,17 @@
     grid-gap: 0px;
 }
 
-/*.gridSquare {
-    width: 25px;
-    height: 25px;
+.toolBarColor {
     border: 1px solid black;
-} */
+}
+
+.toolBarColor:hover {
+    border: 1px solid lightblue;
+}
+
+.gridSquare:hover, .toolBarColor:hover {  
+    cursor: pointer;
+} 
 
 body {
     display: flex;
