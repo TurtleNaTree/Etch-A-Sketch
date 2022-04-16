@@ -1,9 +1,10 @@
 const resetBtn = document.querySelector("#resetBtn");
 resetBtn.addEventListener("click", resetGrid);
 const maxToolBarColors = 20;
-let mouseDown = false
-document.body.onmousedown = () => (mouseDown = true)
-document.body.onmouseup = () => (mouseDown = false)
+let mouseDown = false;
+let color = "black";
+document.body.onmousedown = () => (mouseDown = true);
+document.body.onmouseup = () => (mouseDown = false);
 createGrid();
 createToolBar();
 
@@ -37,14 +38,15 @@ function createToolBar() {
         const toolBarColor = document.createElement("div");
         toolBarColor.classList.toggle("toolBarColor");
         toolBarColor.style.backgroundColor = setToolBarColor(color);
-        
+        toolBarColor.addEventListener("click", setColor);
         toolBar.appendChild(toolBarColor);
     }
 
     // this creates the random color selector
     const toolBarRandomColor = document.createElement("div");
     toolBarRandomColor.style.cssText = "display: inline-grid;grid-template-columns: repeat(2, 1fr);";
-    toolBarRandomColor.classList.toggle("toolBarColor");
+    toolBarRandomColor.classList.add("toolBarColor", "rainbow");
+    toolBarRandomColor.addEventListener("click", setColor);
 
     for (let color = 0; color < 4; color++){
         const rainbowColor = document.createElement("div");
@@ -66,7 +68,7 @@ function createToolBar() {
                 console.log("something went wrong in the random color set up");
                 break;
         }
-
+        
         toolBarRandomColor.appendChild(rainbowColor);
         toolBar.appendChild(toolBarRandomColor);
     }
@@ -140,8 +142,28 @@ function setToolBarColor(color){
 function changeColor(event){
     
     if (event.type === "mouseover" && !mouseDown)
-        return;      
-    this.style.backgroundColor = getRandomColor();
+        return;
+    if (color == "rainbow"){
+        this.style.backgroundColor = getRandomColor();
+        return;
+    }
+        
+    this.style.backgroundColor = color;
+}
+
+function setColor(){
+
+    let activeColor = document.querySelector(".activeToolBarColor");
+    if (activeColor)
+        activeColor.classList.toggle("activeToolBarColor");
+    this.classList.toggle("activeToolBarColor");
+
+    if (this.classList.contains("rainbow")){
+        color = "rainbow";
+        return;
+    }
+
+    color = this.style.backgroundColor;
 }
 
 function resetColor(){
