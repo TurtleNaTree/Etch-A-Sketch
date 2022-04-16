@@ -1,16 +1,36 @@
 
 
+body {
+    background-image: url("background.jpg");
+}
+
+h1 {
+    font-family: cursive;
+    font-size: 60px;
+}
+
+.gridSquare {
+    background-color: white;
+}
+
 #sketchBody {
     /*display: flex;
     justify-content: center;*/
     display: inline-grid;
     /*grid-template-columns: repeat(8, 1fr); */
-    width: 800px;
-    height: 800px;
+    width: 600px;
+    height: 600px;
     grid-gap: 0px;
     border-style: solid;
     border-color: black;
     border-width: 10px;
+}
+
+
+#sideBar {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 }
 
 #resetBtn {
@@ -30,6 +50,7 @@
 #mainContent {
     display: flex;
     justify-content: space-evenly;
+    gap: 45px;
 }
 
 #toolBar {
